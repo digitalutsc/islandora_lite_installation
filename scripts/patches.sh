@@ -23,3 +23,7 @@ cp  "$islandora_lite_installation_path"/templates/mods.html.twig "$site_path"/we
 wget https://raw.githubusercontent.com/digitalutsc/islandora_lite_installation/main/patches/advanced_search_issues_9.patch -P "$site_path"/web/modules/contrib/facets
 cd "$site_path"/web/modules/contrib/facets && patch --forward -p1 < advanced_search_issues_9.patch
 cd "$current_path"
+
+wget https://raw.githubusercontent.com/digitalutsc/islandora_lite_installation/main/patches/accessibility_views_flipped_table_convert_to_layout_table.patch -P "$site_path"/web/modules/contrib/views_flipped_table
+cd "$site_path"/web/modules/contrib/views_flipped_table && patch --forward -p1 < accessibility_views_flipped_table_convert_to_layout_table.patch
+cd "$current_path"
