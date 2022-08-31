@@ -6,6 +6,7 @@ source $(dirname $0)/site_config.sh
 "$drush" -y config:set openseadragon.settings iiif_server "$cantaloupe_url"
 "$drush" -y config:set openseadragon.settings manifest_view "iiif_manifest"
 "$drush" -y config:set islandora_iiif.settings iiif_server "$cantaloupe_url"
+"$drush" -y config:set islandora_mirador.settings iiif_manifest_url "$site_url"/media/[media:mid]/manifest
 
 # Ensure standalone_url is enabled
 "$drush" -y config:set media.settings standalone_url true
