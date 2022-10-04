@@ -7,7 +7,7 @@ source $(dirname $0)/site_config.sh
 
 "$drush" -y pm:enable media_thumbnails_tiff
 
-"$drush" -y migrate:import --group=islandora
+"$drush" -y migrate:import islandora_tags
 
 "$drush" -y then olivero
 "$drush" -y config-set system.theme default olivero
