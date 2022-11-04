@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: ark_in_url
+label: 'ARK in URL'
+type: 'canonical_entities:node'
+pattern: '[node:field_identifier]'
+selection_criteria:
+  7225edce-5477-4efd-ab5a-ecf884127ea2:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 7225edce-5477-4efd-ab5a-ecf884127ea2
+    context_mapping:
+      node: node
+    bundles:
+      islandora_object: islandora_object
+selection_logic: and
+weight: -5
+relationships: {  }
