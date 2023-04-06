@@ -23,20 +23,9 @@ private_files_path="${site_path}"/web/sites/default/private_files
 mkdir "${private_files_path}"
 chown -Rf www-data:www-data "${private_files_path}"
 
-# update settings.php with path of private file system
-chmod 777 "${site_path}"/web/sites/default/settings.php 
-cd "${site_path}"/web/sites/default && sed -i "/file_private_path/c\$settings['file_private_path'] = 'sites/default/private_files';" settings.php && chmod 444 settings.php && cd "${inital_path}"
-
-# configure file system
-"$drush" -y config-import --partial --source="$islandora_lite_installation_path"/configs/private_file_system/system
-
-# configure media's file fields
-"$drush" -y config-import --partial --source="$islandora_lite_installation_path"/configs/private_file_system/media
-
-
-# Apply patch for file_entity
-wget https://raw.githubusercontent.com/digitalutsc/override_permission_file_entity/main/override_file_access.patch -P "${site_path}"/web/modules/contrib/file_entity
-cd "${site_path}"/web/modules/contrib/file_entity && patch -p1 < override_file_access.patch && cd "$islandora_lite_installation_path"
+# update settings.php with path of private file system ==> to be done manually
+#chmod 777 "${site_path}"/web/sites/default/settings.php 
+#cd "${site_path}"/web/sites/default && sed -i "/file_private_path/c\$settings['file_private_path'] = 'sites/default/private_files';" settings.php && chmod 444 settings.php && cd "${inital_path}"
 
 
 # import access control fields
