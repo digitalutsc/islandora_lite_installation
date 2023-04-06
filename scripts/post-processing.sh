@@ -2,6 +2,11 @@
 
 source $(dirname $0)/site_config.sh
 
+# configuring Search API server
+"$drush" -y config-set search_api.server.default_solr_server backend_config.connector_config.scheme https
+"$drush" -y config-set search_api.server.default_solr_server backend_config.connector_config.host ${solr_host}
+"$drush" -y config-set search_api.server.default_solr_server backend_config.connector_config.core ${solr_core}
+
 # IIIF server configs
 "$drush" -y config:set openseadragon.settings iiif_server "$cantaloupe_url"
 "$drush" -y config:set openseadragon.settings manifest_view "iiif_manifest"

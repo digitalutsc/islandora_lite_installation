@@ -11,3 +11,5 @@ source $(dirname $0)/site_config.sh
 
 "$drush" -y then olivero
 "$drush" -y config-set system.theme default olivero
+
+"$drush" -y pm:uninstall search
