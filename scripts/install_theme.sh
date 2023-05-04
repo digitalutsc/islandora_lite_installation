@@ -21,6 +21,9 @@ git clone -b doris git@github.com:digitalutsc/dsu_subtheme_barrioDepartments.git
 # enable theme settings
 "$drush" -y config-import --partial --source="${site_path}"/dsu_sites_config/all/themes
 
+# import configs for TimelineJS
+"$drush" -y config-import --partial --source="${site_path}"/dsu_sites_config/all/timelinejs
+
 # import custom blocks
 "$drush" ib
 
