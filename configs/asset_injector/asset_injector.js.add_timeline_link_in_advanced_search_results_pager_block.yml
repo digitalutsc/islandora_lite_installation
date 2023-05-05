@@ -9,12 +9,10 @@ code: |
   jQuery(window).on('load', function(){
     current_url = window.location.pathname;
     
-    jQuery(".pager__display").find('ul').append('<li class="pager__item"><a id="timeline-link" href="/collection/'+ 
-current_url.split("/")[2] +'/timeline" class="pager__link"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Timeline</a></li>');
+    jQuery(".pager__display").find('ul').append('<li class="pager__item"><a id="timeline-link" href="/collection/'+ current_url.split("/")[2] +'/timeline" class="pager__link"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Timeline</a></li>');
     
     // for olivero theme
-    jQuery(".pager__group").children('ul').eq(1).append('<li class="pager__item"><a id="timeline-link" href="/collection/'+ 
-current_url.split("/")[2] +'/timeline" class="pager__link" ><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Timeline</a></li>');
+    jQuery(".pager__group").children('ul').eq(1).append('<li class="pager__item"><a id="timeline-link" href="/collection/'+ current_url.split("/")[2] +'/timeline" class="pager__link" ><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Timeline</a></li>');
     
     jQuery('#block-barriodepartments-content > .content > .views-element-container').on('DOMSubtreeModified', function(){
     	  // process timeline url
@@ -22,7 +20,10 @@ current_url.split("/")[2] +'/timeline" class="pager__link" ><i class="fa fa-cale
     	  var parts = url.split('?');
     	  
     	  // replace url for timline link
-  	    jQuery("#timeline-link").attr("href", parts[0] + "/timeline?" + parts[1]);
+    	  if (parts[1].length)
+  	       jQuery("#timeline-link").attr("href", parts[0] + "/timeline?" + parts[1]);
+  	    else 
+  	    	jQuery("#timeline-link").attr("href", parts[0] + "/timeline");
   	});
   });
 noscript: ''
@@ -39,10 +40,5 @@ conditions:
     id: context_all
     negate: null
     values: ''
-  view_inclusion:
-    id: view_inclusion
-    negate: false
-    view_inclusion:
-      view-collection-page_1: view-collection-page_1
 contexts: {  }
 conditions_require_all: true
