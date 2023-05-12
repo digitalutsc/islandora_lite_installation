@@ -1,3 +1,4 @@
+uuid: 0e5b07a3-6e02-4e0c-b687-0f418a7cad12
 langcode: en
 status: true
 dependencies:
@@ -8,7 +9,10 @@ dependencies:
     - field.field.media.web_archive.field_media_use
     - media.type.web_archive
   module:
+    - file
     - link
+_core:
+  default_config_hash: ObOS8CdgepU8I7EJfu838FYi4eG2mIgJyrci0mxPQtE
 id: media.web_archive.media_library
 targetEntityType: media
 bundle: web_archive
@@ -16,15 +20,22 @@ mode: media_library
 content:
   field_base_url:
     type: link_default
-    weight: 1
+    weight: 2
     region: content
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
+  field_media_file:
+    type: file_generic
+    weight: 1
+    region: content
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
   field_media_use:
     type: entity_reference_autocomplete
-    weight: 2
+    weight: 3
     region: content
     settings:
       match_operator: CONTAINS
@@ -42,7 +53,6 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
-  field_media_file: true
   langcode: true
   path: true
   status: true

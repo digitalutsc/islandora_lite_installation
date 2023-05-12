@@ -1,3 +1,4 @@
+uuid: a1bc1c50-5302-497c-9a55-c7d95d4f3f38
 langcode: en
 status: true
 dependencies:
@@ -20,6 +21,8 @@ content:
     settings:
       image_link: ''
       image_style: large
+      image_loading:
+        attribute: lazy
     third_party_settings:
       fico:
         fico:
@@ -31,6 +34,7 @@ content:
 hidden:
   created: true
   field_media_use: true
+  field_ocr: true
   langcode: true
   name: true
   search_api_excerpt: true

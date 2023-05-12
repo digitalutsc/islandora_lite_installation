@@ -1,7 +1,9 @@
+uuid: 45a14109-de47-4113-ac66-88c2c788b5b1
 langcode: en
 status: true
 dependencies:
   config:
+    - field.field.media.remote_video.ableplayer_audio_description
     - field.field.media.remote_video.field_media_oembed_video
     - field.field.media.remote_video.field_media_use
     - media.type.remote_video
@@ -13,15 +15,23 @@ targetEntityType: media
 bundle: remote_video
 mode: default
 content:
+  ableplayer_audio_description:
+    type: string_textfield
+    weight: 8
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   created:
     type: datetime_timestamp
-    weight: 4
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
   field_media_oembed_video:
     type: oembed_textfield
-    weight: 0
+    weight: 1
     region: content
     settings:
       size: 60
@@ -29,7 +39,7 @@ content:
     third_party_settings: {  }
   field_media_use:
     type: entity_reference_autocomplete
-    weight: 1
+    weight: 2
     region: content
     settings:
       match_operator: CONTAINS
@@ -39,27 +49,35 @@ content:
     third_party_settings: {  }
   langcode:
     type: language_select
-    weight: 2
+    weight: 3
     region: content
     settings:
       include_locked: true
     third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   path:
     type: path
-    weight: 5
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 6
+    weight: 7
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 3
+    weight: 4
     region: content
     settings:
       match_operator: CONTAINS
@@ -67,5 +85,4 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-hidden:
-  name: true
+hidden: {  }

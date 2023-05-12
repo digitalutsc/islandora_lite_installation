@@ -1,3 +1,4 @@
+uuid: 998e35e0-cd24-413e-9460-552e8a602a41
 langcode: en
 status: true
 dependencies:
@@ -11,13 +12,6 @@ targetEntityType: media
 bundle: document
 mode: media_library
 content:
-  langcode:
-    type: language_select
-    weight: 2
-    region: content
-    settings:
-      include_locked: true
-    third_party_settings: {  }
   field_media_use:
     type: entity_reference_autocomplete
     weight: 1
@@ -27,6 +21,13 @@ content:
       match_limit: 10
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
     third_party_settings: {  }
   name:
     type: string_textfield

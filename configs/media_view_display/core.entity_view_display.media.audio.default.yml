@@ -1,12 +1,13 @@
+uuid: 088233e9-a7a2-447d-aa2f-f2c48063b20e
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.media.audio.ableplayer_caption
     - field.field.media.audio.ableplayer_chapter
     - field.field.media.audio.ableplayer_description
     - field.field.media.audio.ableplayer_poster_image
     - field.field.media.audio.ableplayer_sign_language
+    - field.field.media.audio.field_ableplayer_media_caption
     - field.field.media.audio.field_media_audio_file
     - field.field.media.audio.field_media_use
     - media.type.audio
@@ -35,12 +36,12 @@ content:
     weight: 0
     region: content
 hidden:
-  ableplayer_caption: true
   ableplayer_chapter: true
   ableplayer_description: true
   ableplayer_poster_image: true
   ableplayer_sign_language: true
   created: true
+  field_ableplayer_media_caption: true
   field_media_use: true
   langcode: true
   name: true

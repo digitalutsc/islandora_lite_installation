@@ -1,7 +1,9 @@
+uuid: 90b01236-ef4e-4830-b1df-1bf6789921f7
 langcode: en
 status: true
 dependencies:
   config:
+    - field.field.media.remote_video.ableplayer_audio_description
     - field.field.media.remote_video.field_media_oembed_video
     - field.field.media.remote_video.field_media_use
     - media.type.remote_video
@@ -28,6 +30,7 @@ content:
     weight: 0
     region: content
 hidden:
+  ableplayer_audio_description: true
   created: true
   field_media_use: true
   langcode: true

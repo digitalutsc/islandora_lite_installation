@@ -1,12 +1,13 @@
+uuid: cfe84ac7-7717-4b42-bcb3-9675b28fc200
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.media.audio.ableplayer_caption
     - field.field.media.audio.ableplayer_chapter
     - field.field.media.audio.ableplayer_description
     - field.field.media.audio.ableplayer_poster_image
     - field.field.media.audio.ableplayer_sign_language
+    - field.field.media.audio.field_ableplayer_media_caption
     - field.field.media.audio.field_media_audio_file
     - field.field.media.audio.field_media_use
     - media.type.audio
@@ -18,29 +19,32 @@ targetEntityType: media
 bundle: audio
 mode: default
 content:
-  ableplayer_caption:
-    type: file_generic
-    weight: 7
-    region: content
-    settings:
-      progress_indicator: throbber
-    third_party_settings: {  }
   created:
     type: datetime_timestamp
-    weight: 3
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_ableplayer_media_caption:
+    type: entity_reference_autocomplete
+    weight: 8
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_media_audio_file:
     type: file_generic
-    weight: 0
+    weight: 1
     region: content
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
   field_media_use:
     type: entity_reference_autocomplete
-    weight: 6
+    weight: 7
     region: content
     settings:
       match_operator: CONTAINS
@@ -50,27 +54,35 @@ content:
     third_party_settings: {  }
   langcode:
     type: language_select
-    weight: 1
+    weight: 2
     region: content
     settings:
       include_locked: true
     third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   path:
     type: path
-    weight: 4
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 5
+    weight: 6
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 2
+    weight: 3
     region: content
     settings:
       match_operator: CONTAINS
@@ -83,4 +95,3 @@ hidden:
   ableplayer_description: true
   ableplayer_poster_image: true
   ableplayer_sign_language: true
-  name: true
