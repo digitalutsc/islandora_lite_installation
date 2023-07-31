@@ -1,0 +1,52 @@
+uuid: 0d79c5fb-2f65-43b8-89f8-6d37f159b190
+langcode: en
+status: true
+dependencies:
+  module:
+    - advanced_search
+    - context
+  theme:
+    - barriodepartments
+id: federatedsearchadvancedsearchforpage
+theme: barriodepartments
+region: sidebar_first
+weight: -8
+provider: null
+plugin: 'advanced_search_block:federated_search__page_1'
+settings:
+  id: 'advanced_search_block:federated_search__page_1'
+  label: 'Federated Search: Advanced Search for Page'
+  label_display: '0'
+  provider: advanced_search
+  fields:
+    - fulltext_title
+    - linked_agent
+    - subject_full_text
+    - resource_type
+    - genre_full_text
+  context_filter: null
+visibility:
+  context:
+    id: context
+    negate: null
+    values: ''
+  user_status:
+    id: user_status
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    user_status:
+      viewing_profile: '0'
+      logged_viewing_profile: '0'
+      own_page_true: '0'
+      field_value: '0'
+    user_fields: uid
+  context_all:
+    id: context_all
+    negate: null
+    values: ''
+  view_inclusion:
+    id: view_inclusion
+    negate: false
+    view_inclusion:
+      view-federated_search-page_1: view-federated_search-page_1
