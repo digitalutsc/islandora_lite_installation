@@ -1,0 +1,45 @@
+uuid: 8bfc2c4f-9d35-4d97-83f4-734f74b02a19
+langcode: en
+status: true
+dependencies:
+  module:
+    - advanced_search
+    - context
+  theme:
+    - barriodepartments
+id: federatedsearchsearchresultspagerforpage
+theme: barriodepartments
+region: content
+weight: -17
+provider: null
+plugin: 'advanced_search_result_pager:federated_search__page_1'
+settings:
+  id: 'advanced_search_result_pager:federated_search__page_1'
+  label: 'Federated Search: Search Results Pager for Page'
+  label_display: '0'
+  provider: advanced_search
+visibility:
+  view_inclusion:
+    id: view_inclusion
+    negate: false
+    view_inclusion:
+      view-federated_search-page_1: view-federated_search-page_1
+  context:
+    id: context
+    negate: null
+    values: ''
+  user_status:
+    id: user_status
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    user_status:
+      viewing_profile: '0'
+      logged_viewing_profile: '0'
+      own_page_true: '0'
+      field_value: '0'
+    user_fields: uid
+  context_all:
+    id: context_all
+    negate: null
+    values: ''
