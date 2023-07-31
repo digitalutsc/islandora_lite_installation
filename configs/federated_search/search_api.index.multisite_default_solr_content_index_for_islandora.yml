@@ -1,0 +1,360 @@
+uuid: 1a1c973b-03f8-4eac-a726-d318cb42a482
+langcode: en
+status: true
+dependencies:
+  config:
+    - search_api.server.default_solr_server
+  module:
+    - search_api_solr
+    - search_api_location
+    - search_api
+    - controlled_access_terms
+    - group_solr
+    - islandora_object_thumbnail
+    - islandora_search_processor
+    - islandora_site_name
+third_party_settings:
+  search_api_solr:
+    finalize: false
+    commit_before_finalize: false
+    commit_after_finalize: false
+    highlighter:
+      maxAnalyzedChars: 51200
+      fragmenter: regex
+      usePhraseHighlighter: true
+      highlightMultiTerm: true
+      preserveMulti: false
+      regex:
+        slop: 0.5
+        pattern: blank
+        maxAnalyzedChars: 10000
+      highlight:
+        mergeContiguous: false
+        requireFieldMatch: false
+        snippets: 3
+        fragsize: 0
+    advanced:
+      index_prefix: ''
+    multilingual:
+      limit_to_content_language: false
+      include_language_independent: true
+      use_language_undefined_as_fallback_language: false
+      specific_languages: {  }
+      use_universal_collation: false
+id: multisite_default_solr_content_index_for_islandora
+name: 'Multisite Default Solr content index for Islandora Lite hnq42z'
+description: 'Default content index created for Islandora Lite'
+read_only: true
+field_settings:
+  author:
+    label: 'Author name'
+    datasource_id: solr_multisite_document
+    property_path: ss_author
+    type: string
+  changed:
+    label: Changed
+    datasource_id: solr_multisite_document
+    property_path: ds_changed
+    type: date
+  created:
+    label: 'Authored on'
+    datasource_id: solr_multisite_document
+    property_path: ds_created
+    type: date
+  edtf_year:
+    label: 'EDTF Creation Date Year'
+    datasource_id: solr_multisite_document
+    property_path: itm_edtf_year
+    type: integer
+  field_coordinates:
+    label: Coordinates
+    datasource_id: solr_multisite_document
+    property_path: locm_field_coordinates
+    type: location
+  field_description:
+    label: Description
+    datasource_id: solr_multisite_document
+    property_path: tm_X3b_und_field_description
+    type: text
+    boost: !!float 8
+  field_edtf_date:
+    label: Year
+    datasource_id: solr_multisite_document
+    property_path: itm_field_edtf_date
+    type: integer
+  field_edtf_date_created:
+    label: 'Year Created'
+    datasource_id: solr_multisite_document
+    property_path: itm_field_edtf_date_created
+    type: integer
+  field_edtf_date_issued:
+    label: 'Year Issued'
+    datasource_id: solr_multisite_document
+    property_path: itm_field_edtf_date_issued
+    type: integer
+  field_member_of:
+    label: 'Member of'
+    datasource_id: solr_multisite_document
+    property_path: sm_field_member_of
+    type: string
+  field_part_of:
+    label: 'Part Of'
+    datasource_id: solr_multisite_document
+    property_path: sm_field_part_of
+    type: string
+  field_tags:
+    label: Tags
+    datasource_id: solr_multisite_document
+    property_path: itm_field_tags
+    type: integer
+  field_weight:
+    label: Weight
+    datasource_id: solr_multisite_document
+    property_path: its_field_weight
+    type: integer
+  fulltext_title:
+    label: Title
+    datasource_id: solr_multisite_document
+    property_path: tm_X3b_und_fulltext_title
+    type: text
+    boost: !!float 13
+  genre:
+    label: Genre
+    datasource_id: solr_multisite_document
+    property_path: sm_genre
+    type: string
+  genre_full_text:
+    label: Genre
+    datasource_id: solr_multisite_document
+    property_path: tm_X3b_und_genre_full_text
+    type: text
+  geographic_subject:
+    label: 'Geographic Subject'
+    datasource_id: solr_multisite_document
+    property_path: sm_geographic_subject
+    type: string
+  group_access_control:
+    label: ' Group: Access Control'
+    property_path: search_api_group_access_control
+    type: string
+  identifier:
+    label: Identifier
+    datasource_id: solr_multisite_document
+    property_path: sm_identifier
+    type: string
+  islandora_model:
+    label: 'Islandora Model'
+    datasource_id: solr_multisite_document
+    property_path: ss_islandora_model
+    type: string
+  islandora_object_thumbnail:
+    label: 'Islandora Object Thumbnail'
+    datasource_id: solr_multisite_document
+    property_path: ss_islandora_object_thumbnail
+    type: string
+  islandora_site_name:
+    label: 'Islandora Site Name'
+    datasource_id: solr_multisite_document
+    property_path: ss_islandora_site_name
+    type: string
+  language:
+    label: Language
+    datasource_id: solr_multisite_document
+    property_path: sm_language
+    type: string
+  linked_agent:
+    label: 'Linked Agent'
+    datasource_id: solr_multisite_document
+    property_path: sm_linked_agent
+    type: string
+  linked_agent_rel_type:
+    label: 'Linked Agent Relator Type'
+    datasource_id: solr_multisite_document
+    property_path: sm_linked_agent_rel_type
+    type: string
+  linked_agent_text:
+    label: 'Linked Agen'
+    datasource_id: solr_multisite_document
+    property_path: tm_X3b_und_linked_agent_text
+    type: text
+    boost: !!float 5
+  linked_agent_vid:
+    label: 'Linked Agent Type'
+    datasource_id: solr_multisite_document
+    property_path: sm_linked_agent_vid
+    type: string
+  media_file_alt_text:
+    label: 'Media File Alt Text'
+    datasource_id: solr_multisite_document
+    property_path: sm_media_file_alt_text
+    type: string
+  media_thumbnail_url:
+    label: 'Media Thumbnail'
+    datasource_id: solr_multisite_document
+    property_path: sm_media_thumbnail_url
+    type: string
+  nid:
+    label: ID
+    datasource_id: solr_multisite_document
+    property_path: its_nid
+    type: integer
+  node_grants:
+    label: 'Node access information'
+    datasource_id: solr_multisite_document
+    property_path: sm_node_grants
+    type: string
+  physical_form:
+    label: 'Physical Form'
+    datasource_id: solr_multisite_document
+    property_path: sm_physical_form
+    type: string
+  rendered_item:
+    label: 'Rendered item'
+    datasource_id: solr_multisite_document
+    property_path: tm_X3b_und_rendered_item
+    type: text
+  resource_type:
+    label: 'Resource Type'
+    datasource_id: solr_multisite_document
+    property_path: ss_resource_type
+    type: string
+  s_islandora_linked_agent_ann:
+    label: 'Agent By Role: Annotator (ann)'
+    datasource_id: solr_multisite_document
+    property_path: sm_s_islandora_linked_agent_ann
+    type: string
+  s_islandora_linked_agent_pbl:
+    label: 'Agent By Role: Publisher (pbl)'
+    datasource_id: solr_multisite_document
+    property_path: sm_s_islandora_linked_agent_pbl
+    type: string
+  status:
+    label: 'Publishing status'
+    datasource_id: solr_multisite_document
+    property_path: bs_status
+    type: boolean
+  sticky:
+    label: 'Sticky at top of lists'
+    datasource_id: solr_multisite_document
+    property_path: bs_sticky
+    type: boolean
+  subject:
+    label: Subject
+    datasource_id: solr_multisite_document
+    property_path: sm_subject
+    type: string
+  subject_full_text:
+    label: Subject
+    datasource_id: solr_multisite_document
+    property_path: tm_X3b_und_subject_full_text
+    type: text
+  subjects_name:
+    label: 'Subjects (name)'
+    datasource_id: solr_multisite_document
+    property_path: sm_subjects_name
+    type: string
+  subjects_name_vid:
+    label: 'Subjects Name Vocabulary'
+    datasource_id: solr_multisite_document
+    property_path: sm_subjects_name_vid
+    type: string
+  temporal_subject:
+    label: 'Temporal Subject'
+    datasource_id: solr_multisite_document
+    property_path: sm_temporal_subject
+    type: string
+  title:
+    label: Title
+    datasource_id: solr_multisite_document
+    property_path: ss_title
+    type: string
+  type:
+    label: 'Content type'
+    datasource_id: solr_multisite_document
+    property_path: ss_type
+    type: string
+  uid:
+    label: 'Author ID'
+    datasource_id: solr_multisite_document
+    property_path: its_uid
+    type: integer
+  url:
+    label: URI
+    datasource_id: solr_multisite_document
+    property_path: ss_url
+    type: string
+datasource_settings:
+  solr_multisite_document:
+    id_field: id
+    request_handler: ''
+    default_query: '*:*'
+    label_field: ''
+    language_field: ss_search_api_language
+    url_field: site
+    target_index: default_solr_index_islandora_lite
+    target_index_machine_name: default_solr_index_islandora_lite
+    target_hash: hnq42z
+processor_settings:
+  add_url:
+    weights:
+      preprocess_index: -30
+  aggregated_field:
+    weights:
+      add_properties: 20
+  edtf_year_only:
+    fields:
+      islandora_object|field_edtf_date: islandora_object|field_edtf_date
+      islandora_object|field_edtf_date_created: islandora_object|field_edtf_date_created
+      islandora_object|field_edtf_date_issued: islandora_object|field_edtf_date_issued
+    ignore_undated: 0
+    ignore_open_start: 0
+    open_start_year: '0'
+    ignore_open_end: 0
+    open_end_year: '0'
+  entity_type: {  }
+  group_access_control: {  }
+  highlight:
+    weights:
+      postprocess_query: 0
+    prefix: '<strong>'
+    suffix: '</strong>'
+    excerpt: true
+    excerpt_always: false
+    excerpt_length: 256
+    exclude_fields: {  }
+    highlight: always
+    highlight_partial: false
+  html_filter:
+    weights:
+      preprocess_index: -3
+      preprocess_query: -6
+    all_fields: false
+    fields:
+      - rendered_item
+    title: true
+    alt: true
+    tags:
+      b: 2
+      h1: 5
+      h2: 3
+      h3: 2
+      string: 2
+  islandora_object_thumbnail: {  }
+  islandora_site_name: {  }
+  language_with_fallback: {  }
+  linked_agent_by_type: {  }
+  rendered_item:
+    weights:
+      add_properties: 0
+      pre_index_save: -10
+  solr_date_range:
+    weights:
+      preprocess_index: 0
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  cron_limit: 50
+  index_directly: true
+  track_changes_in_references: true
+server: default_solr_server
