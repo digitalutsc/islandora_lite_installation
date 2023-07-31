@@ -1,11 +1,11 @@
 diff --git a/islandora_workbench_integration.info.yml b/islandora_workbench_integration.info.yml
-index 31cc630..af36824 100644
+index b6aaf58..7b56f21 100644
 --- a/islandora_workbench_integration.info.yml
 +++ b/islandora_workbench_integration.info.yml
-@@ -4,6 +4,4 @@ type: module
+@@ -3,6 +3,4 @@ description: "Utilities for use with Islandora Workbench."
+ type: module
  package: Islandora
- core: 8.x
- core_version_requirement: ^8 || ^9
+ core_version_requirement: ^9 || ^10
 -dependencies:
 -  - islandora
  version: '1.0.0'
