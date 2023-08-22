@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Description: This script fetches URIs from the 'file_managed' table of the 'drupal_default' database
+# that have "public://" in the URI and outputs them.
+
+# Execute the MySQL query to fetch uri column from file_managed table
+mysql -N -e "USE drupal_default; SELECT uri FROM file_managed;" | while read -r uri; do
+    # Check if the uri contains "public://"
+    if [[ $uri == public://* ]]; then
+        echo "$uri"
+    fi
+done
