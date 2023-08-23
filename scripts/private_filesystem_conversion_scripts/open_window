@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Description: This script creates backup tables, inserts data, and truncates original tables.
+# It reads table names from the 'fields_to_truncate.txt' file and performs backup and truncation operations.
+
+# Loop over each table name in fields_to_truncate.txt
+while IFS= read -r table_name; do
+    # Create a backup table name by appending "_BK" to the original table name
+    backup_table_name="${table_name}_BK"
+    
+    # Generate and execute the SQL statements
+    # Create a backup table with the same structure as the original table
+    # Insert data from the original table into the backup table
+    # Then truncate the original table to remove data
+    mysql -N -e "USE drupal_default; CREATE TABLE ${backup_table_name} LIKE ${table_name}; INSERT INTO ${backup_table_name} SELECT * FROM ${table_name}; TRUNCATE TABLE ${table_name};"
+    
+    # Check the exit status of the SQL execution
+    if [ $? -eq 0 ]; then
+        echo "Backup and truncation successful for table ${table_name}"
+    else
+        echo "Error occurred for table ${table_name}"
+    fi
+done < fields_to_truncate.txt
