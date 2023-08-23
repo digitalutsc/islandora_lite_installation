@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# First script: Backup and truncate tables
+echo "Backing up all tables in fields_to_truncate.txt and truncating them"
+./open_window
+if [ $? -eq 0 ]; then
+    echo "Backup and truncation successful for all tables"
+else
+    echo "Error occurred when backing up tables. ABORTING"
+    exit 1
+fi
+
+# Inform the user about the next step
+echo "Now, visit the Drupal UI and clear the cache. You should be able to edit the field settings now for every field listed in \"fields_to_truncate.txt\". Press Enter to lock the settings again (you MUST do this or your media files will not be visible on the UI)"
+read -r
+
+# Second script: Restore backups and delete extra tables
+echo "Restoring backups and deleting extra tables"
+./close_window
+if [ $? -eq 0 ]; then
+    echo "Restore and deletion successful for all tables"
+else
+    echo "Error occurred when restoring backed up tables. ABORTING"
+    exit 1
+fi
+
+echo "Done!"
