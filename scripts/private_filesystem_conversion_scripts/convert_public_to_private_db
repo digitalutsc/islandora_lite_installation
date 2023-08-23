@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Description: This script updates the 'uri' column in the 'file_managed' table of the 'drupal_default' database.
+# It replaces occurrences of 'public://' in the 'uri' column with 'private://'.
+
+# Run the MySQL query to update the 'uri' column
+mysql -N -e "USE drupal_default; UPDATE file_managed SET file_managed.uri = REPLACE(file_managed.uri, 'public://', 'private://');" 
+echo "Database updated to have all 'uri' values point to their location in the private filesystem."
