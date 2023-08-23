@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Description: This script restores data from backup tables and deletes the backup tables themselves.
+# It reads table names from the 'fields_to_truncate.txt' file and performs restore and deletion operations.
+
+# Loop over each table name in fields_to_truncate.txt
+while IFS= read -r table_name; do
+    # Create the backup table name by appending "_BK" to the original table name
+    backup_table_name="${table_name}_BK"
+    echo "Restoring data for table ${table_name}. The backup table name is ${backup_table_name}"
+    
+    # Generate and execute the SQL statements
+    # Restore data by inserting from the backup table to the original table
+    # Then drop the backup table to clean up
+    mysql -N -e "USE drupal_default; INSERT INTO ${table_name} SELECT * FROM ${backup_table_name}; DROP TABLE ${backup_table_name};"
+    
+    # Check the exit status of the SQL execution
+    if [ $? -eq 0 ]; then
+        echo "Restore and deletion successful for table ${table_name}"
+    else
+        echo "Error occurred for table ${table_name}. ABORTING"
+        exit 1
+    fi
+done < fields_to_truncate.txt
