@@ -1,0 +1,60 @@
+#!/bin/bash
+
+### This script is intended for dockerized Drupal sites that have a public filesystem currently but is intended to be conmverted to a private one. It will copy all files from the public filesystem to the private filesystem and update the database to reflect the new file locations. It will also give the user a window to edit field settings in the Drupal UI. ###
+
+# Get the directory where the script is located
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
+
+# Change to the script directory
+cd "$script_dir"
+
+echo "Copying necessary scripts to the root directory of the MariaDB and Drupal containers..."
+
+# Place the scripts `list_public_files`, `covert_public_to_private_db`, `allow_changing_ui_settings`, `open_window`, and `close_window` in the root directory of the MariaDB container and run `chmod +x <script_name>` on each of them to make them executable.
+sudo docker cp list_public_files isle-dc-mariadb-1:/list_public_files
+sudo docker cp convert_public_to_private_db isle-dc-mariadb-1:/convert_public_to_private_db
+sudo docker cp allow_changing_ui_settings isle-dc-mariadb-1:/allow_changing_ui_settings
+sudo docker cp open_window isle-dc-mariadb-1:/open_window
+sudo docker cp close_window isle-dc-mariadb-1:/close_window
+sudo docker exec -it isle-dc-mariadb-1 bash -c "chmod +x /list_public_files"
+sudo docker exec -it isle-dc-mariadb-1 bash -c "chmod +x /convert_public_to_private_db"
+sudo docker exec -it isle-dc-mariadb-1 bash -c "chmod +x /allow_changing_ui_settings"
+sudo docker exec -it isle-dc-mariadb-1 bash -c "chmod +x /open_window"
+sudo docker exec -it isle-dc-mariadb-1 bash -c "chmod +x /close_window"
+
+# Place the script `copy_public_files_to_private_filesystem` in the root directory of the Drupal container and run `chmod +x copy_public_files_to_private_filesystem` on it to make it executable.
+sudo docker cp copy_public_files_to_private_filesystem isle-dc-drupal-1:/copy_public_files_to_private_filesystem
+sudo docker exec -it isle-dc-drupal-1 bash -c "chmod +x /copy_public_files_to_private_filesystem"
+
+echo "Done copying scripts."
+
+echo "Finding all public files..."
+sudo docker exec -it isle-dc-mariadb-1 bash -c "/list_public_files" > /tmp/public_files.txt
+echo "Done finding all public files."
+
+echo "Copying all public files to private filesystem..."
+sudo docker exec -i isle-dc-drupal-1 bash -c "/copy_public_files_to_private_filesystem "$1" "$2"" < /tmp/public_files.txt
+echo "Done copying all public files to private filesystem."
+
+echo "Converting database file entries from public to private..."
+sudo docker exec -it isle-dc-mariadb-1 bash -c "/convert_public_to_private_db"
+echo "Done converting database file entries from public to private."
+
+sudo docker exec -it isle-dc-mariadb-1 bash -c "/allow_changing_ui_settings"
+
+# Clean up temporary file
+rm /tmp/public_files.txt
+echo "Removed temporary file /tmp/public_files.txt"
+
+echo "Removing scripts from the root directory of the MariaDB and Drupal containers..."
+# Remove the scripts from the root directory of the MariaDB container
+sudo docker exec -it isle-dc-mariadb-1 bash -c "rm /list_public_files"
+sudo docker exec -it isle-dc-mariadb-1 bash -c "rm /convert_public_to_private_db"
+sudo docker exec -it isle-dc-mariadb-1 bash -c "rm /allow_changing_ui_settings"
+sudo docker exec -it isle-dc-mariadb-1 bash -c "rm /open_window"
+sudo docker exec -it isle-dc-mariadb-1 bash -c "rm /close_window"
+echo "Removed scripts from the root directory of the MariaDB container."
+
+# Remove the script from the root directory of the Drupal container
+sudo docker exec -it isle-dc-drupal-1 bash -c "rm /copy_public_files_to_private_filesystem"
+echo "Removed scripts from the root directory of the Drupal container."

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# List all the public files and pass the output directly to the copy command
+./list_public_files | ./copy_public_files_to_private_filesystem "$1" "$2"
+
+# Convert the database file entries from public to private
+./convert_public_to_private_db
+
+# Give the user a window for editing field settings
+./allow_changing_ui_settings

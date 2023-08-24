@@ -1,0 +1,57 @@
+#!/bin/bash
+
+####################################################################
+# Description: This script reads a list of URIs from a piped output
+# and copies corresponding files from a public directory to a private
+# directory. It takes two arguments: the public directory path and
+# the private directory path.
+#
+# Usage: ./copy_public_files_to_private_filesystem <public_path> <private_path>
+#
+# Note: The script assumes that the URIs provided via input have a
+# "public://" prefix that needs to be removed before constructing the
+# private destination path. The input should be piped from the output
+# of a mysql query that returns a list of URIs in a table (in particular,
+# the "file_managed" table of the drupal_default database).
+####################################################################
+
+public_path="$1"    # The path to the public directory
+private_path="$2"   # The path to the private directory
+
+# Add a "/" to the end of the paths if they don't already end with "/"
+if [[ ! "$public_path" == */ ]]; then
+    public_path="$public_path/"
+fi
+
+if [[ ! "$private_path" == */ ]]; then
+    private_path="$private_path/"
+fi
+
+# Read the input from the piped output
+while IFS= read -r uri; do
+    # Remove "public://" from the URI
+    local_path="${uri#public://}"
+
+    # Sanitize variables to remove hidden characters
+    public_path_sanitized=$(echo "$public_path" | tr -d '\r')
+    local_path_sanitized=$(echo "$local_path" | tr -d '\r')
+
+    # Construct the private destination path
+    private_dest="$private_path$local_path_sanitized"
+
+    # Get the directory of the private destination path
+    private_destination_directory="$(dirname "$private_dest")/"
+    
+    # Create the destination directory if it doesn't exist, making sure to maintain the directory structure of the public filesystem
+    mkdir -p "$private_destination_directory"
+    
+    # Copy the file to the private destination
+    cp "$public_path_sanitized$local_path_sanitized" "$private_destination_directory"
+    echo "Copied $public_path_sanitized$local_path_sanitized to $private_destination_directory"
+
+    # Remove the file from the public directory
+    rm "$public_path_sanitized$local_path_sanitized"
+    echo "Removed $public_path_sanitized$local_path_sanitized"
+done
+
+echo "All public files copied from public to private filesystem."
